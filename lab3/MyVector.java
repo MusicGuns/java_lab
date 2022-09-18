@@ -2,24 +2,25 @@ import java.util.Arrays;
 
 import java.lang.Exception;
 
-class MyVector {
-    Object[] objectArray;
-    int size;
-    int capacity;
+@SuppressWarnings("unchecked")
+class MyVector<T> {
+    private T[] objectArray;
+    private int size;
+    private int capacity;
 
-    public MyVector(Object[] beginArray) {
+    public MyVector(T[] beginArray) {
         objectArray = Arrays.copyOf(beginArray, beginArray.length*2+10);
         size = beginArray.length;
         capacity = 2*size+10;
     }
 
     public MyVector() {
-        objectArray = new Object[10];
+        objectArray = (T[])new Object[10];
         size = 0;
         capacity = 10;
     }
 
-    public MyVector( MyVector myVector ) {
+    public MyVector( MyVector<T> myVector ) {
         objectArray = Arrays.copyOf(myVector.objectArray, myVector.objectArray.length );
         size = myVector.size;
         capacity = myVector.capacity;
@@ -37,7 +38,7 @@ class MyVector {
         return capacity;
     }
 
-    public void addElementToEnd(Object a) {
+    public void addElementToEnd(T a) {
         if (size == capacity) {
             increaseArraySize();
         }
@@ -45,7 +46,7 @@ class MyVector {
         size++;
     }
 
-    public void addElementToIndex(Object a, int i) throws Exception {
+    public void addElementToIndex(T a, int i) throws Exception {
         if (i > size) {
             throw new Exception(); 
         }
@@ -54,10 +55,10 @@ class MyVector {
     }
 
     public void increaseArraySize() {
-        Object[] tempArray = null;
+        T[] tempArray = null;
 
         if (size == capacity) {
-            tempArray = new Object[capacity * 2 + 10];
+            tempArray = (T[])new Object[capacity * 2 + 10];
         }
         System.arraycopy(objectArray, 0, tempArray, 0, capacity);
 
@@ -66,9 +67,9 @@ class MyVector {
     }
 
     public void changeSizeToArray(int i) throws Exception {
-        Object[] tempArray = null;
+        T[] tempArray = null;
         if (i > 0) {
-            tempArray = new Object[i];
+            tempArray = (T[])new Object[i];
             System.arraycopy(objectArray, 0, tempArray, 0, i);
     
             objectArray = tempArray;
@@ -84,9 +85,9 @@ class MyVector {
 
 
     public void shrinkSize() throws Exception {
-        Object[] temp;
+        T[] temp;
         if (size > 0) {
-            temp = new Object[size];
+            temp = (T[])new Object[size];
             System.arraycopy(objectArray, 0, temp, 0, size);
             capacity = size;
             objectArray = temp;
@@ -113,7 +114,7 @@ class MyVector {
     }
 
     public void removeAllElements() {
-       Object[] tempArray = new Object[capacity];
+       T[] tempArray = (T[])new Object[capacity];
        objectArray = tempArray; 
     }
 

@@ -4,39 +4,34 @@ import org.junit.Test;
 public class TestVector {
     @Test
     public void test1() throws Exception {
-        MyVector vector = new MyVector();
+        MyVector<Object> vector = new MyVector<Object>();
         assertEquals(0, vector.size());
         assertEquals(10, vector.capacity());
-        assertEquals(10, vector.objectArray.length);
     }
 
     @Test
     public void test2() throws Exception {
-        MyVector vector = new MyVector(new Object[] {1,"array",2.33,4});
+        MyVector <Integer> vector = new MyVector<Integer>(new Integer[] {1,7,5,4});
         assertEquals(4, vector.size());
         assertEquals(18, vector.capacity());
-        assertEquals(18, vector.objectArray.length);
 
-        MyVector vector1 = new MyVector(vector);
+        MyVector <Integer> vector1 = new MyVector<Integer>(vector);
         assertEquals(4, vector1.size());
         assertEquals(18, vector1.capacity());
-        assertEquals(18, vector1.objectArray.length);
     }
 
     @Test
     public void test3() throws Exception {
-        MyVector vector = new MyVector(new Object[] {1,"array",2.33,4});
-        vector.addElementToEnd("ez");
+        MyVector <Integer> vector = new MyVector<Integer>(new Integer[] {1,7,5,4});
+        vector.addElementToEnd(9);
         assertEquals(5, vector.size());
         assertEquals(18, vector.capacity());
-        assertEquals(18, vector.objectArray.length);
-        assertEquals("ez", vector.returnAtIndex(4));
+        assertEquals(9, vector.returnAtIndex(4));
         for (int i = 0; i < 14; i++ ) {
             vector.addElementToEnd(i);   
         }
         assertEquals(19, vector.size());
         assertEquals(46, vector.capacity());
-        assertEquals(46, vector.objectArray.length);
 
         vector.addElementToIndex(100, 17);
         assertEquals(100, vector.returnAtIndex(17));
@@ -47,7 +42,7 @@ public class TestVector {
         vector.changeSizeToArray(5);
         assertEquals(5, vector.size());
         assertEquals(5, vector.capacity());
-        assertEquals("ez", vector.returnAtIndex(4));
+        assertEquals(9, vector.returnAtIndex(4));
 
         assertThrows(Exception.class, () -> {
             vector.changeSizeToArray(0);
