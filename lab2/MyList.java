@@ -9,14 +9,20 @@ public class MyList {
         size = 0;
     }
 
+    
+    public MyList(Object object) {
+        size = 0;
+        init_add(object);
+    }
+
     public MyList(MyList mylist) {
-        MyList newlist = new MyList();
-        Node node = this.first;
-        newlist.add_first(node.item);
+        size = 0;
+        Node node = mylist.first;
+        add_first(node.item);
 
         for(int i = 0; i < size-1; i++ ) {
             node = node.next;
-            newlist.add_last(node.item); 
+            add_last(node.item); 
         }
     }
 
@@ -30,12 +36,6 @@ public class MyList {
 
     public int size() {
         return size;
-    }
-
-    public static void main(String[] args) {
-        MyList mylist = new MyList();
-
-        System.out.println(mylist.first.item() + "" + mylist.first.next());
     }
 
     public Node add_first(Object object) {
