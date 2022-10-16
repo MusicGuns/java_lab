@@ -1,4 +1,5 @@
-@SuppressWarnings("unchecked")
+
+
 public class BinaryTree<T> {
     private int count;
     private Node<T> first;
@@ -15,8 +16,8 @@ public class BinaryTree<T> {
     public BinaryTree(BinaryTree<T> myBinary) {
         count = 1;
         first = init_add(myBinary.first.item);
-        to_next_copy(first.right_next = new Node(null,null,null), myBinary.first.right_next());
-        to_next_copy(first.left_next = new Node(null,null,null), myBinary.first.left_next());
+        to_next_copy(first.right_next = new Node<T>(null,null,null), myBinary.first.right_next());
+        to_next_copy(first.left_next = new Node<T>(null,null,null), myBinary.first.left_next());
     }
 
     public Node<T> first() {
@@ -31,11 +32,11 @@ public class BinaryTree<T> {
         newNode.item = oldNode.item();
         count+=1;
         if (oldNode.right_next() != null) {
-            to_next_copy(newNode.right_next = new Node(null,null,null), oldNode.right_next());
+            to_next_copy(newNode.right_next = new Node<T>(null,null,null), oldNode.right_next());
         }
 
         if (oldNode.left_next() != null) {
-            to_next_copy(newNode.left_next = new Node(null,null,null), oldNode.left_next());
+            to_next_copy(newNode.left_next = new Node<T>(null,null,null), oldNode.left_next());
         }
     }
 
